@@ -1,8 +1,6 @@
 <template>
 <div>
-  <h1 class="text-5xl text-center">
-    {{ $store.state.example.app }} ~ {{ $t('challenge') }}
-  </h1>
+  FavoritesView
 </div>
 </template>
 
@@ -10,6 +8,9 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'IndexView'
+  name: 'FavoritesView',
+  setup () {
+    return {}
+  }
 })
 </script>
