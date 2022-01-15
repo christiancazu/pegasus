@@ -19,7 +19,8 @@
   <template #item="{item}">
     <div class="nav__right">
       <RouterLink
-        v-slot="{ isActive, isExactActive}"
+        :id="item.id"
+        v-slot="{ isActive, isExactActive }"
         class="nav__right__links"
         :to="item.to"
       >
@@ -47,15 +48,17 @@ export default defineComponent({
   setup () {
     const items = ref([
       {
+        id: 'route-home',
         label: 'Inicio',
         to: { name: 'Home' }
       },
-
       {
+        id: 'route-pokemons',
         label: 'Pokemones',
         to: { name: 'Pokemons' }
       },
       {
+        id: 'route-favorites',
         label: 'Favoritos',
         to: { name: 'Favorites' }
       }

@@ -8,3 +8,8 @@ const router = createRouter({
 })
 
 export default router
+
+export const makeRouter = () => createRouter({
+  history: createWebHistory(),
+  routes
+})

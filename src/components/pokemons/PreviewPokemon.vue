@@ -85,11 +85,7 @@ export default defineComponent({
     }
   },
 
-  emits: ['update:visible', 'modal:confirm'],
-
-  setup () {
-    //
-  }
+  emits: ['update:visible', 'modal:confirm']
 })
 </script>
 

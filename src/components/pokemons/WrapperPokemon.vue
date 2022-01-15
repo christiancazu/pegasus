@@ -18,10 +18,6 @@ export default defineComponent({
       type: String,
       required: true
     }
-  },
-
-  setup () {
-    return {}
   }
 })
 </script>
