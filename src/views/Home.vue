@@ -21,9 +21,9 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   & img {
-    @media (max-width: 960px) {
-    padding: 1rem;
-    width: 100%;
+    @include responsive() {
+      padding: 1rem;
+      width: 100%;
     }
   }
 }

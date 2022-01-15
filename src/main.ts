@@ -7,7 +7,7 @@ import PrimeVue from 'primevue/config'
 
 import 'primevue/resources/themes/md-light-indigo/theme.css'
 import 'primevue/resources/primevue.min.css'
-import 'primeflex/primeflex.css'
+import 'primeflex/primeflex.min.css'
 import 'primeicons/primeicons.css'
 
 import './assets/styles/app.scss'

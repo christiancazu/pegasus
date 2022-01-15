@@ -68,14 +68,21 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" styled>
+// custom menubar styles
 .p-menubar {
   display: flex;
   justify-content: space-between;
+  border: none;
+  border-radius: 0;
+}
+
+.p-menubar-button {
+  color: $white !important;
 }
 
 .nav {
-  background-color: #fff;
+  background-color: $gray;
 
   &__left {
     display: flex;
@@ -88,6 +95,7 @@ export default defineComponent({
       padding-left: .5rem;
       padding-right: .5rem;
       font-size: 1.25rem;
+      color: $white;
     }
   }
 
@@ -95,20 +103,24 @@ export default defineComponent({
     display: flex;
     justify-content: end;
 
+    @include responsive() {
+       background-color: $gray;
+      }
+
     &__links {
       text-decoration: none;
-      color: $gray;
+      color: $white-medium;
       margin-left: 1.5rem;
       padding-top: .25rem;
       padding-bottom: .25rem;
 
-      @media (max-width: 960px) {
+      @include responsive() {
         margin-right: 1rem;
       }
     }
     & .active-link {
       &-exact {
-        color: $black;
+        color: $white;
         font-weight: 700;
       }
     }
