@@ -83,6 +83,9 @@ export default defineComponent({
 
 .nav {
   background-color: $gray;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
 
   &__left {
     display: flex;

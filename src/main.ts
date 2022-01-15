@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import i18n from './i18n'
 import PrimeVue from 'primevue/config'
+import VueToast from 'vue-toast-notification'
+
+import 'vue-toast-notification/dist/theme-sugar.css'
 
 import 'primevue/resources/themes/md-light-indigo/theme.css'
 import 'primevue/resources/primevue.min.css'
@@ -17,4 +20,5 @@ createApp(App)
   .use(store)
   .use(router)
   .use(PrimeVue, { ripple: true })
+  .use(VueToast)
   .mount('#app')

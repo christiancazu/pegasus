@@ -5,7 +5,11 @@
     :key="pokemon.id"
     class="col-12 md:col-6"
   >
-    <div class="pokemon">
+    <div
+      v-if="!isLoading"
+      class="pokemon"
+      style="min-height: 6.95rem"
+    >
       <div class="pokemon__info">
         <div class="pokemon__info__img">
           <img
@@ -24,37 +28,110 @@
         />
       </div>
     </div>
+    <div v-else>
+      <div class="grid">
+        <div class="col-2">
+          <Skeleton
+            class="pokemon--skeleton__item"
+            height="6.6rem"
+            width="100%"
+          />
+        </div>
+        <div class="col-10">
+          <Skeleton
+            class="pokemon--skeleton__item"
+            height="6.5rem"
+            width="100%"
+          />
+        </div>
+      </div>
+    </div>
   </article>
+
+  <PreviewPokemon
+    v-model:visible="modal.isVisible"
+    :preview-pokemon="previewPokemon"
+    @modal:confirm="handleAddFavoritePokemon"
+  />
 </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import Button from 'primevue/button'
+import { defineAsyncComponent, defineComponent, PropType, reactive, ref } from 'vue'
 
-import { Pokemon } from '@/models'
+import Button from 'primevue/button'
+import Skeleton from 'primevue/skeleton'
+
+import { FavoritePokemon, Pokemon } from '@/models'
+import { useStorePokemons, useToast } from '@/composables'
+import { requestUtil } from '@/utils'
 
 export default defineComponent({
   name: 'ListPokemons',
 
   components: {
-    Button
+    Button,
+    Skeleton,
+    PreviewPokemon: defineAsyncComponent(() => import('./PreviewPokemon.vue'))
   },
 
   props: {
     pokemons: {
       type: Array as PropType<Pokemon[]>,
       default: () => []
-    }
+    },
+    isLoading: Boolean
   },
 
   setup () {
+    const { favoritePokemons, dispatch_getPokemon, ADD_FAVORITE_POKEMON } = useStorePokemons()
+
+    const { $toast } = useToast()
+
+    const previewPokemon = ref<FavoritePokemon|null>(null)
+
+    const modal = reactive<{isVisible: boolean}>({
+      isVisible: false
+    })
+
     function handleViewDetailPokemon (pokemon: Pokemon) {
-      console.warn(pokemon)
+      requestUtil({
+        action: dispatch_getPokemon as any,
+        payload: {
+          pokemonId: pokemon.id
+        },
+        resolve: ({ data }: {data: FavoritePokemon}) => {
+          previewPokemon.value = data
+          modal.isVisible = true
+        }
+      })
+    }
+
+    function handleAddFavoritePokemon () {
+      const availeableToAddAsFavorite = favoritePokemons.value.find(fp => fp.id === previewPokemon.value?.id)
+
+      if (availeableToAddAsFavorite) {
+        $toast.open({
+          message: 'El pokemon ya existe en su lista de favoritos',
+          type: 'warning'
+        })
+      } else {
+        $toast.open({
+          message: 'El pokemon se ha agregado a su lista de favoritos'
+        })
+
+        ADD_FAVORITE_POKEMON(previewPokemon.value!)
+      }
+
+      modal.isVisible = false
     }
 
     return {
-      handleViewDetailPokemon
+      modal,
+      //
+      previewPokemon,
+      handleViewDetailPokemon,
+      handleAddFavoritePokemon
     }
   }
 })
@@ -71,9 +148,7 @@ export default defineComponent({
   transition: all .25s;
 
   &:hover {
-    background-color: $gray;
-    border: 1px solid $black;
-    color: $white-medium;
+    background-color: $bg-hover-pokemon;
   }
 
   &__info {
@@ -82,6 +157,7 @@ export default defineComponent({
 
     &__img {
       max-height: 7rem;
+      padding: .25rem 0;
     }
     &__name {
       font-size: 1.5rem;
@@ -90,7 +166,12 @@ export default defineComponent({
   }
   &__actions {
     & button {
+      border-radius: .5rem;
       background-color: var(--cyan-700);
+      &:hover {
+        background-color: var(--cyan-700);
+        filter: brightness(130%);
+      }
     }
   }
 }

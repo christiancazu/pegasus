@@ -16,6 +16,10 @@ const actions: ActionTree<PokemonsStateInterface, StateInterface> = {
     } catch (error) {
       return Promise.reject(error)
     }
+  },
+
+  dispatch_getPokemon (_, { pokemonId }: {pokemonId: string}) {
+    return axiosInstance.get(pokemonId)
   }
 }
 

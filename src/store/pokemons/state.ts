@@ -1,12 +1,14 @@
-import { Pokemon } from '@/models'
+import { FavoritePokemon, Pokemon } from '@/models'
 
 export interface PokemonsStateInterface {
   pokemons: Pokemon[];
+  favoritePokemons: FavoritePokemon[];
 }
 
 function state (): PokemonsStateInterface {
   return {
-    pokemons: []
+    pokemons: [],
+    favoritePokemons: []
   }
 }
 

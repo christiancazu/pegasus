@@ -24,9 +24,6 @@ export const requestUtil = async ({
   } catch (e) {
     if (!reject && e.response?.status !== 422) {
       console.error('error', e)
-      /* this.$notify.error({
-        message: this.$t('notify.error')
-      }) */
     }
 
     reject?.(e)

@@ -3,3 +3,8 @@ export interface Pokemon {
   name: string
   url: string
 }
+
+export interface FavoritePokemon extends Pokemon {
+  height: number
+  weight: number
+}
