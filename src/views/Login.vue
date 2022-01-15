@@ -14,20 +14,60 @@
   <Button
     class="login__btn p-button-warning px-6 py-4"
     label="Ingresar"
+    :loading="isProcessingLogin"
+    @click="handleLogin"
   />
 </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import Button from 'primevue/button'
+
+import { storageService } from '@/services'
+import { useToast } from '@/composables'
 
 export default defineComponent({
   name: 'LoginView',
 
   components: {
     Button
+  },
+
+  setup () {
+    const router = useRouter()
+
+    const { $toast } = useToast()
+
+    const isProcessingLogin = ref(false)
+
+    async function handleLogin () {
+      isProcessingLogin.value = true
+
+      // fake login
+      await new Promise<void>(resolve => {
+        setTimeout(() => {
+          resolve()
+        }, 2000)
+      })
+
+      isProcessingLogin.value = false
+
+      storageService.setToken('eyFakeToken')
+
+      $toast.open({
+        message: 'Bienvenido a API-Pókemon'
+      })
+
+      router.push({ name: 'Home' })
+    }
+
+    return {
+      isProcessingLogin,
+      handleLogin
+    }
   }
 })
 </script>

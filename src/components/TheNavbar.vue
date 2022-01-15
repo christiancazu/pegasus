@@ -24,7 +24,16 @@
         class="nav__right__links"
         :to="item.to"
       >
-        <a :class="{'active-link': isActive, 'active-link-exact': isExactActive}">
+        <template v-if="item.id === 'route-logout'">
+          <Button
+            class="nav__right__logout"
+            icon="pi pi-sign-out"
+          />
+        </template>
+        <a
+          v-else
+          :class="{'active-link': isActive, 'active-link-exact': isExactActive}"
+        >
           {{ item.label }}
         </a>
       </RouterLink>
@@ -37,12 +46,14 @@
 import { defineComponent, ref } from 'vue'
 
 import Menubar from 'primevue/menubar'
+import Button from 'primevue/button'
 
 export default defineComponent({
   name: 'TheNavbar',
 
   components: {
-    Menubar
+    Menubar,
+    Button
   },
 
   setup () {
@@ -61,6 +72,11 @@ export default defineComponent({
         id: 'route-favorites',
         label: 'Favoritos',
         to: { name: 'Favorites' }
+      },
+      {
+        id: 'route-logout',
+        label: 'Favoritos',
+        to: { name: 'Logout' }
       }
     ])
 
@@ -134,6 +150,12 @@ export default defineComponent({
         color: $white;
         font-weight: 700;
       }
+    }
+
+    &__logout {
+      background-color: transparent;
+      border-radius: 50%;
+      border: 1px solid $white;
     }
   }
 }

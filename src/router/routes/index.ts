@@ -3,6 +3,7 @@ import authRoutes from './auth.route'
 
 import favoritesRoutes from './favorites.route'
 import homeRoutes from './home.route'
+import logoutRoutes from './logout.route'
 import pokemonsRoutes from './pokemons.route'
 
 const routes: RouteRecordRaw[] = [
@@ -13,16 +14,26 @@ const routes: RouteRecordRaw[] = [
     children: [
       ...homeRoutes,
       ...pokemonsRoutes,
-      ...favoritesRoutes
-    ]
+      ...favoritesRoutes,
+      ...logoutRoutes
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/auth',
+    path: '/login',
     redirect: 'Login',
     component: () => import('@/layouts/AuthLayout.vue'),
     children: [
       ...authRoutes
     ]
+  },
+  // Always leave this as last one,
+  // but you can also remove it
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('@/views/Error404.vue')
   }
 ]
 
