@@ -6,5 +6,13 @@ export interface Pokemon {
 
 export interface FavoritePokemon extends Pokemon {
   height: number
-  weight: number
+  weight: number,
+  image: string
+  sprites?: {
+    other?: {
+      dream_world?: {
+        front_default?: string
+      }
+    }
+  }
 }

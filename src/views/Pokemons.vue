@@ -60,7 +60,7 @@ export default defineComponent({
     const {
       pokemons, favoritePokemons,
       dispatch_getPokemons,
-      ADD_FAVORITE_POKEMON, REMOVE_FAVORITE_POKEMON
+      REMOVE_FAVORITE_POKEMON
     } = useStorePokemons()
 
     const pagination = reactive<Pagination>({

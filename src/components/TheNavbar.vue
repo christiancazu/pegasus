@@ -87,6 +87,11 @@ export default defineComponent({
   z-index: 100;
   width: 100%;
 
+  @include desktop() {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   &__left {
     display: flex;
     align-items: center;
@@ -107,8 +112,8 @@ export default defineComponent({
     justify-content: end;
 
     @include responsive() {
-       background-color: $gray;
-      }
+      background-color: $gray;
+    }
 
     &__links {
       text-decoration: none;

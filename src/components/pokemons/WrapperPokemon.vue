@@ -44,6 +44,7 @@ export default defineComponent({
     padding: 0 4px;
     color: $gray;
     background-color: $bg-layout;
+    text-transform: capitalize;
   }
 }
 </style>

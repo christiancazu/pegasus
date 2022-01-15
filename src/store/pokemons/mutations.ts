@@ -13,7 +13,14 @@ const mutation: MutationTree<PokemonsStateInterface> = {
   },
 
   [pokemonTypes.ADD_FAVORITE_POKEMON] (state: PokemonsStateInterface, favoritePokemon: FavoritePokemon) {
-    state.favoritePokemons.push(favoritePokemon)
+    state.favoritePokemons.push({
+      id: favoritePokemon.id,
+      name: favoritePokemon.name,
+      url: '',
+      height: favoritePokemon.height,
+      weight: favoritePokemon.weight,
+      image: favoritePokemon.sprites!.other!.dream_world!.front_default as string
+    })
   },
 
   [pokemonTypes.REMOVE_FAVORITE_POKEMON] (state: PokemonsStateInterface, pokemonId: string) {
