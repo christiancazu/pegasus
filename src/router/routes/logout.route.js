@@ -1,6 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
-
-const logoutRoutes: RouteRecordRaw[] = [
+const logoutRoutes = [
   {
     path: 'logout',
     name: 'Logout',

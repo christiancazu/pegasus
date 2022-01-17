@@ -20,7 +20,7 @@
 </section>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -47,7 +47,7 @@ export default defineComponent({
       isProcessingLogin.value = true
 
       // fake login
-      await new Promise<void>(resolve => {
+      await new Promise(resolve => {
         setTimeout(() => {
           resolve()
         }, 2000)

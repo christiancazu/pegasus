@@ -60,14 +60,12 @@
 </Dialog>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
+<script>
+import { defineComponent } from 'vue'
 
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
-
-import { FavoritePokemon } from '@/models'
 
 export default defineComponent({
   name: 'PreviewPokemon',
@@ -80,7 +78,7 @@ export default defineComponent({
 
   props: {
     previewPokemon: {
-      type: Object as PropType<FavoritePokemon>,
+      type: Object,
       default: () => null
     }
   },

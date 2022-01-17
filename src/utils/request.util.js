@@ -1,11 +1,3 @@
-interface RequestUtil {
-  action: ({ payload }: {payload: any}) => Promise<any>
-  payload?: any
-  loader?: (value: boolean) => void
-  resolve?: (value: any) => void
-  reject?: (value: any) => void
-}
-
 /**
  * @returns {Promise<any>} action promise
  */
@@ -15,7 +7,7 @@ export const requestUtil = async ({
   loader,
   resolve,
   reject
-}: RequestUtil): Promise<any> => {
+}) => {
   try {
     loader?.(true)
     const response = await action({ ...payload })

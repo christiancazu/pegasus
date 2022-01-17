@@ -42,7 +42,7 @@
 </Menubar>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref } from 'vue'
 
 import Menubar from 'primevue/menubar'

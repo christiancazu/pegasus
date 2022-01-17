@@ -1,12 +1,10 @@
-import { RouteRecordRaw } from 'vue-router'
 import authRoutes from './auth.route'
-
 import favoritesRoutes from './favorites.route'
 import homeRoutes from './home.route'
 import logoutRoutes from './logout.route'
 import pokemonsRoutes from './pokemons.route'
 
-const routes: RouteRecordRaw[] = [
+const routes = [
   {
     path: '/',
     redirect: 'Home',

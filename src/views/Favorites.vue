@@ -25,7 +25,7 @@
 </section>
 </template>
 
-<script lang="ts">
+<script>
 import { defineAsyncComponent, defineComponent } from 'vue'
 
 import { useStorePokemons } from '@/composables'

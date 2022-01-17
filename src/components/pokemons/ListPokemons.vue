@@ -56,13 +56,12 @@
 </section>
 </template>
 
-<script lang="ts">
-import { defineAsyncComponent, defineComponent, PropType, reactive, ref } from 'vue'
+<script>
+import { defineAsyncComponent, defineComponent, reactive, ref } from 'vue'
 
 import Button from 'primevue/button'
 import Skeleton from 'primevue/skeleton'
 
-import { FavoritePokemon, Pokemon } from '@/models'
 import { useStorePokemons, useToast } from '@/composables'
 import { requestUtil } from '@/utils'
 
@@ -77,7 +76,7 @@ export default defineComponent({
 
   props: {
     pokemons: {
-      type: Array as PropType<Pokemon[]>,
+      type: Array,
       default: () => []
     },
     isLoading: Boolean
@@ -88,19 +87,19 @@ export default defineComponent({
 
     const { $toast } = useToast()
 
-    const previewPokemon = ref<FavoritePokemon|null>(null)
+    const previewPokemon = ref(null)
 
-    const modal = reactive<{isVisible: boolean}>({
+    const modal = reactive({
       isVisible: false
     })
 
-    function handleViewDetailPokemon (pokemon: Pokemon) {
+    function handleViewDetailPokemon (pokemon) {
       requestUtil({
-        action: dispatch_getPokemon as any,
+        action: dispatch_getPokemon,
         payload: {
           pokemonId: pokemon.id
         },
-        resolve: ({ data }: {data: FavoritePokemon}) => {
+        resolve: ({ data }) => {
           previewPokemon.value = data
           modal.isVisible = true
         }
@@ -120,7 +119,7 @@ export default defineComponent({
           message: 'El pokemon se ha agregado a su lista de favoritos'
         })
 
-        ADD_FAVORITE_POKEMON(previewPokemon.value!)
+        ADD_FAVORITE_POKEMON(previewPokemon.value)
       }
 
       modal.isVisible = false

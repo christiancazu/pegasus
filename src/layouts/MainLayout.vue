@@ -8,7 +8,7 @@
 </main>
 </template>
 
-<script lang="ts">
+<script>
 import { defineAsyncComponent, defineComponent } from 'vue'
 
 export default defineComponent({
@@ -16,10 +16,6 @@ export default defineComponent({
 
   components: {
     TheNavbar: defineAsyncComponent(() => import('@/components/TheNavbar.vue'))
-  },
-
-  setup () {
-    return {}
   }
 })
 </script>

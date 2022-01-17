@@ -1,16 +1,13 @@
 import { axiosInstance } from '@/config/axios'
-import { Pokemon } from '@/models'
-import { ActionTree } from 'vuex'
-import { StateInterface } from '../index'
-import { pokemonTypes } from './pokemon.types'
-import { PokemonsStateInterface } from './state'
 
-const actions: ActionTree<PokemonsStateInterface, StateInterface> = {
+import { pokemonTypes } from './pokemon.types'
+
+const actions = {
   async dispatch_getPokemons ({ commit }, payload) {
     try {
       const { data } = await axiosInstance.get('', payload)
 
-      commit(pokemonTypes.SET_POKEMONS, data.results as Pokemon[])
+      commit(pokemonTypes.SET_POKEMONS, data.results)
 
       return data
     } catch (error) {
@@ -18,7 +15,7 @@ const actions: ActionTree<PokemonsStateInterface, StateInterface> = {
     }
   },
 
-  dispatch_getPokemon (_, { pokemonId }: {pokemonId: string}) {
+  dispatch_getPokemon (_, { pokemonId }) {
     return axiosInstance.get(pokemonId)
   }
 }

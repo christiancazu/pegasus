@@ -1,10 +1,10 @@
 
 export const storageService = {
-  setToken (token: string) {
+  setToken (token) {
     localStorage.setItem('token', token)
   },
 
-  getToken (): string|null {
+  getToken () {
     return localStorage.getItem('token')
   },
 
@@ -16,7 +16,7 @@ export const storageService = {
     localStorage.removeItem('user')
   },
 
-  setIsLogged (isLogged: boolean) {
+  setIsLogged (isLogged) {
     if (isLogged) {
       localStorage.setItem('isLogged', JSON.stringify(isLogged))
     } else {
@@ -24,7 +24,7 @@ export const storageService = {
     }
   },
 
-  getIsLogged (): boolean {
+  getIsLogged () {
     return !!JSON.parse(localStorage.getItem('isLogged') || 'false')
   },
 

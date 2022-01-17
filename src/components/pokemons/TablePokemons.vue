@@ -89,15 +89,13 @@
 </DataTable>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType, ref } from 'vue'
+<script>
+import { computed, defineComponent, ref } from 'vue'
 
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
-
-import { FavoritePokemon } from '@/models'
 
 export default defineComponent({
   name: 'TablePokemons',
@@ -111,7 +109,7 @@ export default defineComponent({
 
   props: {
     pokemons: {
-      type: Array as PropType<FavoritePokemon[]>,
+      type: Array,
       default: () => []
     }
   },
@@ -119,9 +117,9 @@ export default defineComponent({
   emits: ['pokemon:delete'],
 
   setup (props) {
-    const filter = ref<string>('')
+    const filter = ref('')
 
-    const filteredPokemons = computed<FavoritePokemon[]>(
+    const filteredPokemons = computed(
       () => props.pokemons.filter(p => p.name.includes(filter.value.toLowerCase()))
     )
 

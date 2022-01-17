@@ -1,6 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
-
-const authRoutes: RouteRecordRaw[] = [
+const authRoutes = [
   {
     path: '',
     name: 'Login',

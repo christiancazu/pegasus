@@ -1,6 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
-
-const favoritesRoutes: RouteRecordRaw[] = [
+const favoritesRoutes = [
   {
     path: 'favorites',
     name: 'Favorites',

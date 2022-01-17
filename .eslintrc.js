@@ -5,8 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:vue/vue3-recommended',
-    '@vue/standard',
-    '@vue/typescript/recommended'
+    '@vue/standard'
   ],
   parserOptions: {
     ecmaVersion: 2020
@@ -95,23 +94,6 @@ module.exports = {
         baseIndent: 0
       }
     ],
-    // ts
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
-    '@typescript-eslint/no-unsafe-argument': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    // '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/no-floating-promises': 'off',
-    // allow debugger during development only
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/unbound-method': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   },

@@ -5,9 +5,7 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
 
-import { FavoritePokemon } from '@/models'
-
-const previewPokemonMock: FavoritePokemon = {
+const previewPokemonMock = {
   id: '1',
   name: 'Pikachu',
   url: 'https://pokeapi.co/api/v2/pokemon/1',

@@ -31,20 +31,13 @@
 </section>
 </template>
 
-<script lang="ts">
-import { defineAsyncComponent, defineComponent, reactive, Ref, ref } from 'vue'
+<script>
+import { defineAsyncComponent, defineComponent, reactive, ref } from 'vue'
 import { useStorePokemons } from '@/composables'
 
 import Button from 'primevue/button'
 
 import { requestUtil } from '@/utils'
-
-interface Pagination {
-  count: number
-  previous: string|null
-  next: string|null
-  offset: number
-}
 
 export default defineComponent({
   name: 'PokemonsView',
@@ -63,7 +56,7 @@ export default defineComponent({
       REMOVE_FAVORITE_POKEMON
     } = useStorePokemons()
 
-    const pagination = reactive<Pagination>({
+    const pagination = reactive({
       count: 0,
       previous: null,
       next: null,
@@ -83,11 +76,11 @@ export default defineComponent({
       init(isLoadingBtnNext)
     }
 
-    function handleDeleteFavoritePokemon (idPokemon: string) {
+    function handleDeleteFavoritePokemon (idPokemon) {
       REMOVE_FAVORITE_POKEMON(idPokemon)
     }
 
-    async function init (isLoadingBtn: Ref) {
+    async function init (isLoadingBtn) {
       requestUtil({
         action: dispatch_getPokemons,
         payload: {
@@ -99,7 +92,7 @@ export default defineComponent({
         loader: (v) => {
           isLoadingBtn.value = v
         },
-        resolve: (data: Pagination) => {
+        resolve: (data) => {
           pagination.count = data.count
           pagination.previous = data.previous
           pagination.next = data.next

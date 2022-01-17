@@ -1,6 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
-
-const pokemonsRoutes: RouteRecordRaw[] = [
+const pokemonsRoutes = [
   {
     path: 'pokemons',
     name: 'Pokemons',

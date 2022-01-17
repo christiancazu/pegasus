@@ -10,7 +10,7 @@
 </section>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue'
 
 import Button from 'primevue/button'
