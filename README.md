@@ -4,3 +4,17 @@
 </p>
 
 <h1 align="center">Front-end Developer - Evaluation</h1>
+
+## instrucciones
+
+- habilitar variables de entorno
+
+```copiar env.example a .env```
+
+- instalar dependencias
+
+```yarn```
+
+- servidor de desarrollo
+
+```yarn serve```
